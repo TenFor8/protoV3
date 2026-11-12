@@ -8,7 +8,6 @@ import {
   Review,
   TAProfile,
 } from "@/types";
-import { LEARNING_STYLE_OPTIONS } from "@/data/mockData";
 import { analyzeReviewSubstance } from "@/utils/substanceAnalyzer";
 import {
   X,
@@ -84,7 +83,7 @@ export default function GuidedReviewModal({
     "Walked through pointer edge cases step-by-step on the whiteboard during Tutorial 101 and stayed after class to answer questions."
   );
   const [privateTATip, setPrivateTATip] = useState("");
-  const [selectedStyles, setSelectedStyles] = useState<LearningStyleTag[]>([
+  const [selectedStyles] = useState<LearningStyleTag[]>([
     "hands-on",
     "ta-mentorship",
   ]);
@@ -226,105 +225,97 @@ export default function GuidedReviewModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-slate-200">
-        {/* Top Modal Header */}
-        <div className="sticky top-0 z-10 bg-slate-900 text-white px-6 py-4 flex items-center justify-between border-b border-slate-800">
+    <div className="fixed inset-0 z-50 bg-stone-900/50 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+      <div className="bg-white rounded-xl max-w-3xl w-full max-h-[92vh] overflow-y-auto shadow-xl border border-stone-200">
+        {/* Top Header */}
+        <div className="sticky top-0 z-10 bg-white px-6 py-4 flex items-center justify-between border-b border-stone-200/80">
           <div>
             <div className="flex items-center gap-2">
-              <span className="px-2 py-0.5 rounded bg-amber-400 text-slate-950 text-[11px] font-extrabold">
-                Substance-Guided Composer
+              <span className="font-mono text-[10px] font-semibold uppercase px-2 py-0.5 rounded bg-stone-100 text-stone-700 border border-stone-200">
+                Substance Composer
               </span>
-              <span className="text-xs text-slate-300">
-                Helps Future Students + Feeds the School Curriculum Backend
+              <span className="text-xs text-stone-500">
+                Peer advice + curriculum action
               </span>
             </div>
-            <h2 className="text-lg font-extrabold mt-0.5">
-              Submit Structured Course, Instructor &amp; TA Feedback
+            <h2 className="text-base font-bold tracking-tight text-stone-900 mt-1">
+              Submit Course &amp; Teaching Review
             </h2>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300"
+            className="p-1 rounded-md text-stone-400 hover:text-stone-700 hover:bg-stone-100 transition-colors"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          {/* Interactive Test Presets Bar */}
-          <div className="p-4 rounded-xl bg-indigo-50/90 border border-indigo-200 space-y-2.5">
+        <form onSubmit={handleSubmit} className="p-6 space-y-5 text-xs">
+          {/* Demo Presets Bar */}
+          <div className="p-3.5 rounded-lg bg-stone-50 border border-stone-200/80 space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-extrabold uppercase tracking-wider text-indigo-950 flex items-center gap-1.5">
-                <Sparkles className="w-4 h-4 text-indigo-600" />
-                Try Instant Demo Scenarios (Test the Substance vs. Rant Filter!)
+              <span className="text-[11px] font-semibold text-stone-700 flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-stone-500" />
+                Substance Filter Demo Presets
               </span>
-              <span className="text-[11px] text-indigo-700">
-                Click any preset to see live analysis below
+              <span className="text-[10px] text-stone-400">
+                Click to load sample review
               </span>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               <button
                 type="button"
                 onClick={() => applyPreset("inappropriate-rant")}
-                className="text-left p-2.5 rounded-lg bg-white hover:bg-rose-50 border border-rose-200 text-xs transition-colors"
+                className="text-left p-2 rounded-md bg-white hover:bg-stone-100 border border-stone-200 transition-colors"
               >
-                <div className="font-bold text-rose-800">
-                  1. Personal Attack / Rant
+                <div className="font-semibold text-rose-800">
+                  1. Rant / Attack
                 </div>
-                <div className="text-[11px] text-slate-500">
-                  Blocked + offers constructive rewrite
-                </div>
+                <div className="text-[10px] text-stone-500">Blocked + rewrite</div>
               </button>
               <button
                 type="button"
                 onClick={() => applyPreset("vague-complaint")}
-                className="text-left p-2.5 rounded-lg bg-white hover:bg-amber-50 border border-amber-200 text-xs transition-colors"
+                className="text-left p-2 rounded-md bg-white hover:bg-stone-100 border border-stone-200 transition-colors"
               >
-                <div className="font-bold text-amber-900">
-                  2. Vague 1-Liner Complaint
+                <div className="font-semibold text-amber-800">
+                  2. Vague 1-Liner
                 </div>
-                <div className="text-[11px] text-slate-500">
-                  Flagged for low substance + coached
-                </div>
+                <div className="text-[10px] text-stone-500">Low substance</div>
               </button>
               <button
                 type="button"
                 onClick={() => applyPreset("substantive-critical")}
-                className="text-left p-2.5 rounded-lg bg-white hover:bg-emerald-50 border border-emerald-300 text-xs transition-colors"
+                className="text-left p-2 rounded-md bg-white hover:bg-stone-100 border border-stone-200 transition-colors"
               >
-                <div className="font-bold text-emerald-900">
-                  3. Harsh Critique WITH Substance
+                <div className="font-semibold text-emerald-800">
+                  3. Hard Critique
                 </div>
-                <div className="text-[11px] text-slate-500">
-                  Allowed! Routed to School Backend
-                </div>
+                <div className="text-[10px] text-stone-500">High substance</div>
               </button>
               <button
                 type="button"
                 onClick={() => applyPreset("constructive-ta")}
-                className="text-left p-2.5 rounded-lg bg-white hover:bg-indigo-100 border border-indigo-200 text-xs transition-colors"
+                className="text-left p-2 rounded-md bg-white hover:bg-stone-100 border border-stone-200 transition-colors"
               >
-                <div className="font-bold text-indigo-900">
-                  4. Constructive + TA Praise
+                <div className="font-semibold text-stone-800">
+                  4. TA Praise
                 </div>
-                <div className="text-[11px] text-slate-500">
-                  Public TA quote + private TA tip
-                </div>
+                <div className="text-[10px] text-stone-500">Public + private tip</div>
               </button>
             </div>
           </div>
 
-          {/* Step 1: Course, Timing & Reviewer Context */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {/* Core Fields */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">
+              <label className="block text-[11px] font-semibold text-stone-600 mb-1">
                 Course
               </label>
               <select
                 value={courseCode}
                 onChange={(e) => setCourseCode(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold bg-slate-50"
+                className="w-full px-2.5 py-1.5 rounded-md border border-stone-200 bg-white text-xs font-mono text-stone-800 focus:outline-none focus:border-stone-400"
               >
                 {courses.map((c) => (
                   <option key={c.id} value={c.code}>
@@ -335,8 +326,8 @@ export default function GuidedReviewModal({
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">
-                Review Checkpoint (Anti-Bias Timing)
+              <label className="block text-[11px] font-semibold text-stone-600 mb-1">
+                Evaluation Window
               </label>
               <select
                 value={checkpointType}
@@ -345,23 +336,23 @@ export default function GuidedReviewModal({
                     e.target.value as Review["checkpointType"]
                   )
                 }
-                className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold bg-slate-50"
+                className="w-full px-2.5 py-1.5 rounded-md border border-stone-200 bg-white text-xs text-stone-800 focus:outline-none focus:border-stone-400"
               >
                 <option value="Mid-Term Pulse">
-                  Mid-Term Pulse (Week 6 — Pre-Final Exam)
+                  Mid-Term Pulse (Week 6)
                 </option>
                 <option value="Post-Course Reflection">
                   Post-Course Reflection (End of Term)
                 </option>
                 <option value="Alumni Retro">
-                  Alumni Retro (After Co-op / Next Course)
+                  Alumni Retro (After Co-op)
                 </option>
               </select>
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">
-                Overall Experience
+              <label className="block text-[11px] font-semibold text-stone-600 mb-1">
+                Overall Tone
               </label>
               <select
                 value={overallExperience}
@@ -370,24 +361,24 @@ export default function GuidedReviewModal({
                     e.target.value as Review["overallExperience"]
                   )
                 }
-                className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold bg-slate-50"
+                className="w-full px-2.5 py-1.5 rounded-md border border-stone-200 bg-white text-xs text-stone-800 focus:outline-none focus:border-stone-400"
               >
                 <option value="Positive">Positive</option>
                 <option value="Mixed / Constructive">
                   Mixed / Constructive
                 </option>
                 <option value="Critical / Needs Reform">
-                  Critical / Needs Reform (Substantive Critique)
+                  Critical / Needs Reform
                 </option>
               </select>
             </div>
           </div>
 
-          {/* Context Selectors */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+          {/* Context Strip */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3 rounded-lg bg-stone-50 border border-stone-200/70">
             <div>
-              <label className="block text-[11px] font-bold text-slate-600 mb-1">
-                Lecture Engagement Context
+              <label className="block text-[10px] font-semibold uppercase tracking-wider text-stone-500 mb-1">
+                Lecture Attendance
               </label>
               <select
                 value={attendance}
@@ -396,19 +387,17 @@ export default function GuidedReviewModal({
                     e.target.value as Review["reviewerContext"]["attendance"]
                   )
                 }
-                className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs bg-white"
+                className="w-full px-2 py-1 rounded border border-stone-200 text-xs bg-white text-stone-800"
               >
-                <option value="Attended 80%+ lectures">
-                  Attended 80%+ lectures
-                </option>
+                <option value="Attended 80%+ lectures">Attended 80%+</option>
                 <option value="Watched recordings">Watched recordings</option>
-                <option value="Mostly self-studied">Mostly self-studied</option>
+                <option value="Mostly self-studied">Self-studied</option>
               </select>
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold text-slate-600 mb-1">
-                TA / Office Hours Usage
+              <label className="block text-[10px] font-semibold uppercase tracking-wider text-stone-500 mb-1">
+                TA / Office Hours
               </label>
               <select
                 value={officeHoursUsed}
@@ -418,21 +407,17 @@ export default function GuidedReviewModal({
                       .value as Review["reviewerContext"]["officeHoursUsed"]
                   )
                 }
-                className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs bg-white"
+                className="w-full px-2 py-1 rounded border border-stone-200 text-xs bg-white text-stone-800"
               >
-                <option value="Regular TA/Prof OH user">
-                  Regular TA/Prof OH user
-                </option>
-                <option value="Occasional Piazza/Ed">
-                  Occasional Piazza/Ed
-                </option>
-                <option value="Did not use OH">Did not use OH</option>
+                <option value="Regular TA/Prof OH user">Regular user</option>
+                <option value="Occasional Piazza/Ed">Occasional online</option>
+                <option value="Did not use OH">Did not use</option>
               </select>
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold text-slate-600 mb-1">
-                Workload Pacing Felt
+              <label className="block text-[10px] font-semibold uppercase tracking-wider text-stone-500 mb-1">
+                Workload Pacing
               </label>
               <select
                 value={workloadFelt}
@@ -441,7 +426,7 @@ export default function GuidedReviewModal({
                     e.target.value as Review["reviewerContext"]["workloadFelt"]
                   )
                 }
-                className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs bg-white"
+                className="w-full px-2 py-1 rounded border border-stone-200 text-xs bg-white text-stone-800"
               >
                 <option value="Manageable">Manageable</option>
                 <option value="Heavy but fair">Heavy but fair</option>
@@ -450,58 +435,50 @@ export default function GuidedReviewModal({
             </div>
           </div>
 
-          {/* Dual-Purpose Guided Text Areas */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
-              <label className="block text-xs font-extrabold text-slate-900 flex items-center gap-1.5">
-                <Users className="w-4 h-4 text-indigo-600" />
-                1. For Future Students (Learning Style &amp; Prep Advice)
+          {/* Dual Text Areas */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="space-y-1.5">
+              <label className="block text-xs font-semibold text-stone-900 flex items-center gap-1.5">
+                <Users className="w-3.5 h-3.5 text-stone-600" />
+                1. For Future Students (Study Strategy)
               </label>
-              <p className="text-[11px] text-slate-500">
-                How does the instructor teach? Who will thrive here, and what
-                study/tutorial habits helped you succeed?
-              </p>
               <textarea
                 rows={4}
                 value={studentAdvice}
                 onChange={(e) => setStudentAdvice(e.target.value)}
-                placeholder="e.g., Great for hands-on learners who code along in lecture. Start A3 early..."
-                className="w-full p-3 rounded-xl border border-slate-200 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                placeholder="How does the professor teach? What study habits worked?"
+                className="w-full p-2.5 rounded-lg border border-stone-200 text-xs bg-white focus:outline-none focus:border-stone-400"
               />
             </div>
 
-            <div className="p-4 rounded-xl bg-amber-50/50 border border-amber-200 space-y-2">
-              <label className="block text-xs font-extrabold text-amber-950 flex items-center gap-1.5">
-                <Building2 className="w-4 h-4 text-amber-600" />
-                2. For the School / Department Backend (Actionable Reform)
+            <div className="space-y-1.5">
+              <label className="block text-xs font-semibold text-stone-900 flex items-center gap-1.5">
+                <Building2 className="w-3.5 h-3.5 text-stone-600" />
+                2. For Course Faculty (Actionable Feedback)
               </label>
-              <p className="text-[11px] text-amber-900/80">
-                What specific lab, assignment rubric, server bottleneck, or
-                pacing jump should the course team fix for next term?
-              </p>
               <textarea
                 rows={4}
                 value={schoolFeedback}
                 onChange={(e) => setSchoolFeedback(e.target.value)}
-                placeholder="e.g., Assignment 4 overlaps with the project design doc. Splitting DD1 into an earlier checkpoint would..."
-                className="w-full p-3 rounded-xl border border-amber-200 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                placeholder="What specific lab, exam rubric, or pacing issue should be improved?"
+                className="w-full p-2.5 rounded-lg border border-stone-200 text-xs bg-white focus:outline-none focus:border-stone-400"
               />
             </div>
           </div>
 
-          {/* Step 3: TA Feedback (Public Endorsement + Private Coaching Note) */}
-          <div className="p-4 rounded-xl bg-indigo-50/40 border border-indigo-200/80 space-y-3">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <div className="text-xs font-extrabold text-indigo-950 flex items-center gap-1.5">
-                <GraduationCap className="w-4 h-4 text-indigo-600" />
-                3. Teaching Assistant (TA) Recognition &amp; Private Growth Note
-              </div>
+          {/* TA Feedback Inputs */}
+          <div className="p-3.5 rounded-lg bg-stone-50 border border-stone-200/80 space-y-2.5">
+            <div className="flex items-center justify-between">
+              <span className="font-semibold text-stone-800 flex items-center gap-1.5">
+                <GraduationCap className="w-3.5 h-3.5 text-stone-600" />
+                Teaching Assistant Feedback
+              </span>
               <select
                 value={selectedTA}
                 onChange={(e) => setSelectedTA(e.target.value)}
-                className="px-3 py-1.5 rounded-lg border border-indigo-200 text-xs font-semibold bg-white"
+                className="px-2 py-1 rounded border border-stone-200 text-xs bg-white text-stone-800 font-mono"
               >
-                <option value="">No specific TA selected</option>
+                <option value="">No TA selected</option>
                 {tas.map((t) => (
                   <option key={t.id} value={t.name}>
                     {t.name} ({t.role})
@@ -510,62 +487,62 @@ export default function GuidedReviewModal({
               </select>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
               <div>
-                <label className="block text-[11px] font-bold text-indigo-900 mb-1">
-                  Public TA Endorsement (Tutorials / Office Hours / Debugging)
+                <label className="block text-[10px] font-semibold text-stone-500 mb-1">
+                  Public Endorsement (Tutorials &amp; OH)
                 </label>
                 <input
                   type="text"
                   value={taFeedback}
                   onChange={(e) => setTaFeedback(e.target.value)}
-                  placeholder="How did this TA help bridge lecture concepts or debug labs?"
-                  className="w-full px-3 py-2 rounded-lg border border-indigo-200 text-xs bg-white"
+                  placeholder="How did this TA assist your understanding?"
+                  className="w-full px-2.5 py-1.5 rounded-md border border-stone-200 text-xs bg-white"
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-bold text-slate-700 mb-1 flex items-center gap-1">
-                  <Lock className="w-3 h-3 text-amber-600" />
-                  Private Constructive Tip for TA Only (Never Public)
+                <label className="block text-[10px] font-semibold text-stone-500 mb-1 flex items-center gap-1">
+                  <Lock className="w-3 h-3 text-stone-500" />
+                  Private Coaching Note (Never Public)
                 </label>
                 <input
                   type="text"
                   value={privateTATip}
                   onChange={(e) => setPrivateTATip(e.target.value)}
-                  placeholder="Optional: e.g., Writing larger on the board or posting tutorial code earlier"
-                  className="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs bg-white"
+                  placeholder="Tactical suggestion for TA's tutorial delivery..."
+                  className="w-full px-2.5 py-1.5 rounded-md border border-stone-200 text-xs bg-white"
                 />
               </div>
             </div>
           </div>
 
-          {/* LIVE SUBSTANCE & TONE ANALYZER PANEL */}
+          {/* Live Analyzer Box */}
           <div
-            className={`p-5 rounded-2xl border-2 transition-all ${
+            className={`p-4 rounded-lg border text-xs space-y-3 transition-all ${
               analysis.status === "Blocked: Inappropriate / Personal Attack"
-                ? "bg-rose-50 border-rose-400"
+                ? "bg-rose-50/60 border-rose-300"
                 : analysis.status === "Flagged: Low Substance / Rant"
-                ? "bg-amber-50 border-amber-400"
-                : "bg-emerald-50/70 border-emerald-400"
+                ? "bg-amber-50/60 border-amber-300"
+                : "bg-emerald-50/60 border-emerald-300"
             }`}
           >
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div className="flex items-center gap-2.5">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+              <div className="flex items-center gap-2">
                 {analysis.status ===
                 "Blocked: Inappropriate / Personal Attack" ? (
-                  <Ban className="w-6 h-6 text-rose-600 shrink-0" />
+                  <Ban className="w-4 h-4 text-rose-600 shrink-0" />
                 ) : analysis.status === "Flagged: Low Substance / Rant" ? (
-                  <AlertTriangle className="w-6 h-6 text-amber-600 shrink-0" />
+                  <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0" />
                 ) : (
-                  <ShieldCheck className="w-6 h-6 text-emerald-600 shrink-0" />
+                  <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
                 )}
                 <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-extrabold text-slate-900">
-                      Live Substance Score: {analysis.score}/100
+                  <div className="flex items-center gap-2 font-mono">
+                    <span className="font-bold text-stone-900">
+                      Substance Score: {analysis.score}/100
                     </span>
                     <span
-                      className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${
+                      className={`text-[10px] px-1.5 py-0.2 rounded font-medium ${
                         analysis.isPublishable
                           ? "bg-emerald-700 text-white"
                           : "bg-rose-700 text-white"
@@ -574,7 +551,7 @@ export default function GuidedReviewModal({
                       {analysis.status}
                     </span>
                   </div>
-                  <p className="text-xs text-slate-700 mt-0.5 leading-relaxed">
+                  <p className="text-[11px] text-stone-600 mt-0.5">
                     {analysis.coachingTip}
                   </p>
                 </div>
@@ -584,88 +561,77 @@ export default function GuidedReviewModal({
                 <button
                   type="button"
                   onClick={handleApplyCoachRewrite}
-                  className="shrink-0 inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-amber-300 text-xs font-extrabold shadow-sm transition-colors"
+                  className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-stone-900 hover:bg-stone-800 text-white text-xs font-medium transition-colors"
                 >
-                  <Wand2 className="w-4 h-4" />
-                  1-Click Reframe into Constructive Critique
+                  <Wand2 className="w-3.5 h-3.5 text-stone-300" />
+                  Apply Constructive Reframe
                 </button>
               )}
             </div>
 
-            {/* 4-Check Diagnostic Strip */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4 pt-3 border-t border-slate-200/70 text-xs">
-              <div className="flex items-center gap-1.5">
+            {/* Diagnostic 4-check */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-stone-200/60 text-[11px]">
+              <div className="flex items-center gap-1 text-stone-700">
                 <CheckCircle2
-                  className={`w-4 h-4 ${
+                  className={`w-3.5 h-3.5 ${
                     analysis.breakdown.respectfulTone
                       ? "text-emerald-600"
                       : "text-rose-500"
                   }`}
                 />
-                <span className="font-medium text-slate-800">
-                  No Personal Attacks
-                </span>
+                <span>Respectful tone</span>
               </div>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1 text-stone-700">
                 <CheckCircle2
-                  className={`w-4 h-4 ${
+                  className={`w-3.5 h-3.5 ${
                     analysis.breakdown.hasSpecifics
                       ? "text-emerald-600"
                       : "text-amber-500"
                   }`}
                 />
-                <span className="font-medium text-slate-800">
-                  Cites Specific Course Elements
-                </span>
+                <span>Specific elements</span>
               </div>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1 text-stone-700">
                 <CheckCircle2
-                  className={`w-4 h-4 ${
+                  className={`w-3.5 h-3.5 ${
                     analysis.breakdown.hasActionableCritique
                       ? "text-emerald-600"
                       : "text-amber-500"
                   }`}
                 />
-                <span className="font-medium text-slate-800">
-                  Actionable School Suggestion
-                </span>
+                <span>Actionable suggestion</span>
               </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                <span className="font-medium text-slate-800">
-                  Verified Engagement Context
-                </span>
+              <div className="flex items-center gap-1 text-stone-700">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                <span>Context provided</span>
               </div>
             </div>
           </div>
 
-          {/* Submit Footer */}
+          {/* Footer */}
           <div className="flex items-center justify-between pt-2">
-            <span className="text-xs text-slate-500">
-              Auto-tagged for School Backend:{" "}
-              <strong>{analysis.detectedThemes.join(", ") || "General"}</strong>
+            <span className="text-[11px] text-stone-400 font-mono">
+              Themes: {analysis.detectedThemes.join(", ") || "General"}
             </span>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50"
+                className="px-3.5 py-1.5 rounded-lg border border-stone-200 text-xs font-medium text-stone-600 hover:bg-stone-50"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={!analysis.isPublishable}
-                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-extrabold transition-all ${
+                className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-xs font-medium transition-all ${
                   analysis.isPublishable
-                    ? "bg-amber-400 hover:bg-amber-500 text-slate-950 shadow-md"
-                    : "bg-slate-200 text-slate-400 cursor-not-allowed"
+                    ? "bg-stone-900 hover:bg-stone-800 text-white shadow-xs"
+                    : "bg-stone-200 text-stone-400 cursor-not-allowed"
                 }`}
               >
-                <Send className="w-4 h-4" />
-                {analysis.isPublishable
-                  ? "Publish Substantive Review & Sync to Backend"
-                  : "Reframe Review Above to Publish"}
+                <Send className="w-3 h-3" />
+                {analysis.isPublishable ? "Publish Review" : "Fix Review to Publish"}
               </button>
             </div>
           </div>

@@ -270,97 +270,96 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50">
+    <div className="min-h-screen flex flex-col bg-stone-50/50 text-stone-900 font-sans">
       {/* Top Navigation Bar */}
-      <header className="sticky top-0 z-40 bg-slate-950 text-white border-b border-slate-800 shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
-          {/* Brand Logo + Tagline */}
+      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-stone-200/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+          {/* Brand Logo */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center font-black text-base shadow-sm">
+              <div className="w-8 h-8 rounded-lg bg-stone-900 text-white flex items-center justify-center font-bold text-xs tracking-tight">
                 CG
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="font-extrabold text-base tracking-tight text-white">
-                    Course<span className="text-amber-400">Glide</span>
+                  <span className="font-semibold text-sm tracking-tight text-stone-900">
+                    CourseGlide
                   </span>
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-800 text-amber-300 border border-slate-700">
-                    Two-Sided Course &amp; TA Intelligence
+                  <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-md bg-stone-100 text-stone-600 border border-stone-200/80">
+                    UW Waterloo
                   </span>
                 </div>
-                <p className="text-[11px] text-slate-400 hidden sm:block">
-                  Style-matched student reviews • Opt-in TA teaching portfolios
-                  • Closed-loop school curriculum action
+                <p className="text-[11px] text-stone-500 hidden sm:block">
+                  Substantive course intelligence • Teaching portfolios • Closed-loop curriculum action
                 </p>
               </div>
             </div>
 
             <button
               onClick={() => handleOpenReviewModal("CS 246")}
-              className="lg:hidden inline-flex items-center gap-1.5 bg-amber-400 hover:bg-amber-500 text-slate-950 font-extrabold text-xs px-3 py-2 rounded-xl"
+              className="md:hidden inline-flex items-center gap-1.5 bg-stone-900 hover:bg-stone-800 text-white font-medium text-xs px-3 py-1.5 rounded-lg transition-colors"
             >
-              <MessageSquarePlus className="w-4 h-4" />
+              <MessageSquarePlus className="w-3.5 h-3.5" />
               Write Review
             </button>
           </div>
 
-          {/* 3-Portal Switcher */}
-          <div className="flex flex-wrap items-center gap-1.5 bg-slate-900 p-1.5 rounded-xl border border-slate-800">
+          {/* 3-Portal Segmented Switcher */}
+          <div className="flex items-center gap-1 bg-stone-100/90 p-1 rounded-lg border border-stone-200/80 text-xs">
             <button
               onClick={() => setActiveTab("student-explorer")}
-              className={`px-3.5 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all ${
+              className={`px-3 py-1.5 rounded-md font-medium flex items-center gap-1.5 transition-all ${
                 activeTab === "student-explorer"
-                  ? "bg-amber-400 text-slate-950 shadow-sm"
-                  : "text-slate-300 hover:text-white hover:bg-slate-800"
+                  ? "bg-white text-stone-900 shadow-sm"
+                  : "text-stone-600 hover:text-stone-900 hover:bg-stone-200/50"
               }`}
             >
-              <Compass className="w-4 h-4" />
-              1. Student Course &amp; Style Matcher
+              <Compass className="w-3.5 h-3.5" />
+              <span>Courses &amp; Reviews</span>
             </button>
 
             <button
               onClick={() => setActiveTab("ta-instructor-hub")}
-              className={`px-3.5 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all ${
+              className={`px-3 py-1.5 rounded-md font-medium flex items-center gap-1.5 transition-all ${
                 activeTab === "ta-instructor-hub"
-                  ? "bg-amber-400 text-slate-950 shadow-sm"
-                  : "text-slate-300 hover:text-white hover:bg-slate-800"
+                  ? "bg-white text-stone-900 shadow-sm"
+                  : "text-stone-600 hover:text-stone-900 hover:bg-stone-200/50"
               }`}
             >
-              <GraduationCap className="w-4 h-4" />
-              2. TA &amp; Instructor Portfolios
+              <GraduationCap className="w-3.5 h-3.5" />
+              <span>TA &amp; Instructor Hub</span>
             </button>
 
             <button
               onClick={() => setActiveTab("school-backend")}
-              className={`px-3.5 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all ${
+              className={`px-3 py-1.5 rounded-md font-medium flex items-center gap-1.5 transition-all ${
                 activeTab === "school-backend"
-                  ? "bg-amber-400 text-slate-950 shadow-sm"
-                  : "text-slate-300 hover:text-white hover:bg-slate-800"
+                  ? "bg-white text-stone-900 shadow-sm"
+                  : "text-stone-600 hover:text-stone-900 hover:bg-stone-200/50"
               }`}
             >
-              <Building2 className="w-4 h-4" />
-              3. School / Dept Action Backend
-              <span className="ml-1 px-1.5 py-0.5 rounded-full text-[10px] bg-rose-500 text-white font-extrabold">
+              <Building2 className="w-3.5 h-3.5" />
+              <span>Department Actions</span>
+              <span className="ml-1 px-1.5 py-0.2 rounded-full text-[10px] font-mono bg-rose-100 text-rose-700 border border-rose-200">
                 {issues.filter((i) => i.status === "Needs Action").length}
               </span>
             </button>
           </div>
 
-          {/* CTA Button: Write Review / Test Substance Filter */}
+          {/* CTA Button */}
           <button
             onClick={() => handleOpenReviewModal("CS 246")}
-            className="hidden lg:inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-500 text-slate-950 font-extrabold text-xs px-4 py-2.5 rounded-xl shadow-sm transition-colors shrink-0"
+            className="hidden md:inline-flex items-center gap-1.5 bg-stone-900 hover:bg-stone-800 text-white font-medium text-xs px-3.5 py-2 rounded-lg transition-colors shadow-sm shrink-0"
           >
-            <Sparkles className="w-4 h-4" />
-            + Write Review (Test Substance Filter)
+            <Sparkles className="w-3.5 h-3.5 text-stone-300" />
+            <span>Write Review</span>
           </button>
         </div>
       </header>
 
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-5 right-5 z-50 max-w-md bg-slate-900 text-white border border-amber-400/60 px-4 py-3 rounded-2xl shadow-xl flex items-center gap-2.5 text-xs font-semibold">
+        <div className="fixed bottom-5 right-5 z-50 max-w-md bg-stone-900 text-stone-100 border border-stone-800 px-4 py-3 rounded-xl shadow-lg flex items-center gap-2.5 text-xs font-medium animate-in fade-in slide-in-from-bottom-2 duration-200">
           <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
           <span>{toastMessage}</span>
         </div>

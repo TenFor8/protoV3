@@ -9,11 +9,29 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        uw: {
-          gold: "#FFD54F",
-          goldDark: "#F59E0B",
-          black: "#111827",
-        },
+        canvas: "#FAFAF9",
+        surface: "#FFFFFF",
+        subtle: "#F5F5F4",
+        border: "#E7E5E4",
+      },
+      fontFamily: {
+        sans: [
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "'Segoe UI'",
+          "Roboto",
+          "'Helvetica Neue'",
+          "Arial",
+          "sans-serif",
+        ],
+        mono: [
+          "'SF Mono'",
+          "ui-monospace",
+          "Menlo",
+          "Monaco",
+          "Consolas",
+          "monospace",
+        ],
       },
     },
   },
