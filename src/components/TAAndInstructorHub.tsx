@@ -299,7 +299,7 @@ export default function TAAndInstructorHub({
                       key={i}
                       className="px-2.5 py-1 rounded-md bg-stone-50 border border-stone-200/70 text-stone-800 text-xs font-mono flex items-center gap-2"
                     >
-                      <span>★ {sp.label}</span>
+                      <span><span className="text-amber-500">★</span> {sp.label}</span>
                       <span className="text-[10px] text-stone-500 bg-white border border-stone-200 px-1.5 py-0.2 rounded">
                         {sp.count}
                       </span>
@@ -311,7 +311,7 @@ export default function TAAndInstructorHub({
               {/* Student Endorsements */}
               <div className="space-y-2.5 pt-3 border-t border-stone-100">
                 <h3 className="text-xs font-semibold uppercase tracking-wider text-stone-800 flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-stone-600" />
+                  <Sparkles className="w-3.5 h-3.5 text-amber-500" />
                   Student Endorsements ({activeTA.studentEndorsements.length})
                 </h3>
 

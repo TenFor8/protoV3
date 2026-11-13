@@ -255,7 +255,7 @@ export default function GuidedReviewModal({
           <div className="p-3.5 rounded-lg bg-stone-50 border border-stone-200/80 space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-[11px] font-semibold text-stone-700 flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-stone-500" />
+                <Sparkles className="w-3.5 h-3.5 text-amber-500" />
                 Substance Filter Demo Presets
               </span>
               <span className="text-[10px] text-stone-400">
