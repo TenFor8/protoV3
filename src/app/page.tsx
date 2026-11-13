@@ -404,6 +404,20 @@ export default function HomePage() {
         )}
       </main>
 
+      {/* Minimal Footer */}
+      <footer className="mt-auto border-t border-stone-200/80 bg-white/60 py-6 text-xs text-stone-500">
+        <div className="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-stone-800">CourseGlide</span>
+            <span className="text-stone-300">•</span>
+            <span className="text-stone-500">University of Waterloo</span>
+          </div>
+          <p className="text-[11px] text-stone-400">
+            Substantive peer evaluations • Opt-in TA portfolios • Closed-loop department action
+          </p>
+        </div>
+      </footer>
+
       {/* Guided Review Composer Modal */}
       <GuidedReviewModal
         isOpen={isReviewModalOpen}

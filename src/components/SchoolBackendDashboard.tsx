@@ -92,7 +92,7 @@ export default function SchoolBackendDashboard({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5 max-w-5xl mx-auto">
       {/* Top Overview & Metric Strip */}
       <div className="bg-white border border-stone-200/80 rounded-xl p-5 shadow-xs">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
